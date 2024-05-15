@@ -33,3 +33,29 @@ Aggiungere bottoni di start/stop e di inversione del meccanismo di autoplay.
 
 
 
+
+//Milestone 1 
+•Selezionare gli elementi del DOM necessari:
+
+    Selezionare l'elemento contenitore del carosello.
+    Selezionare gli elementi per le frecce "prev" e "next".
+
+•Creare una funzione per popolare il carosello:
+
+    Iterare sull'array images.
+    Per ogni oggetto nell'array, creare un elemento <div> per l'immagine con il titolo e il testo corrispondenti.
+    Aggiungere la classe "active" al primo elemento per renderlo visibile inizialmente.
+
+•Gestire gli eventi di click sulle frecce:
+
+    Aggiungere eventi di click agli elementi delle frecce.
+
+Quando viene cliccata una freccia:
+    Nascondere l'elemento attualmente attivo.
+    Mostrare l'elemento successivo o precedente nell'array images.
+    Aggiornare il titolo e il testo dell'immagine attiva.
+
+•Assicurarsi che il carosello sia infinito:
+
+    Quando si raggiunge l'ultimo elemento nell'array images e si clicca su "next", il carosello dovrebbe tornare al primo elemento.
+    Quando si è sul primo elemento e si clicca su "prev", il carosello dovrebbe mostrare l'ultimo elemento.

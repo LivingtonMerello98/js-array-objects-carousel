@@ -1,5 +1,6 @@
 'use strict'
 
+console.log('ciao')
 
 const images = [
     {
@@ -24,5 +25,50 @@ const images = [
         text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
     }
 ];
+
+
+//seleziono gli elementi del dom 
+// -container
+const container= document.getElementById('container')
+
+//button prev next
+const prevButton = document.querySelector('.prev')
+const nextButton = document.querySelector('.next')
+
+//creiamo una funzione per popolare il carosello--> array images
+function populateCarousel(images){
+    //iteriamo su ciascun oggetto presente nell'array
+    images.forEach(function(image, index){
+
+        const item = document.createElement('div')
+        item.classList.add('item')
+
+        if (index === 0){
+            item.classList.add('active')
+        }
+
+        //creo l'elemento img
+        const img = document.createElement('img')
+        img.src = image.image//da rivedere
+        img.alt = image.title
+
+        //creo l'elemento per il titolo e il testo
+        const title = document.createElement('h2')
+        title.textContent = image.title;
+        const text = document.createElement('p')
+        text.textContent = image.text
+
+        //aggiungo img, title e text all'elemento item
+        item.appendChild(img)
+        item.appendChild(title)
+        item.appendChild(text)
+
+        container.appendChild(item)
+    });
+}
+
+// chiamo la funzione
+populateCarousel(images);
+
 
 
