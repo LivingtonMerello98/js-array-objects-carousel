@@ -48,10 +48,14 @@
 }
 
 .next {
-    bottom: 0;
+  bottom: 0;
+}
+.prev {
+  top: 0;
 }
 
 .prev::after {
+
     content: '';
     width: 10px;
     height: 10px;

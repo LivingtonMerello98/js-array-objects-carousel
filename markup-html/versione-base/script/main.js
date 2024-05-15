@@ -27,48 +27,48 @@ const images = [
 ];
 
 
-//seleziono gli elementi del dom 
-// -container
-const container= document.getElementById('container')
 
-//button prev next
-const prevButton = document.querySelector('.prev')
-const nextButton = document.querySelector('.next')
+// Seleziono gli elementi del carosello dall'HTML
+const itemsContainer = document.querySelector('.items');
+const prevButton = document.querySelector('.prev');
+const nextButton = document.querySelector('.next');
 
-//creiamo una funzione per popolare il carosello--> array images
-function populateCarousel(images){
-    //iteriamo su ciascun oggetto presente nell'array
-    images.forEach(function(image, index){
+// Questa funzione popola dinamicamente il carosello con l'array di oggetti
+function populateCarousel(index) {
+    // Ottengo l'elemento corrente dall'array di oggetti
+    const currentItem = images[index];
+    // Seleziono l'elemento attivo nel carosello
+    const activeItem = document.querySelector('.item.active');
 
-        const item = document.createElement('div')
-        item.classList.add('item')
-
-        if (index === 0){
-            item.classList.add('active')
-        }
-
-        //creo l'elemento img
-        const img = document.createElement('img')
-        img.src = image.image//da rivedere
-        img.alt = image.title
-
-        //creo l'elemento per il titolo e il testo
-        const title = document.createElement('h2')
-        title.textContent = image.title;
-        const text = document.createElement('p')
-        text.textContent = image.text
-
-        //aggiungo img, title e text all'elemento item
-        item.appendChild(img)
-        item.appendChild(title)
-        item.appendChild(text)
-
-        container.appendChild(item)
-    });
+    // Aggiorno l'HTML dell'elemento attivo con l'immagine, il titolo e il testo corrispondenti all'elemento corrente
+    activeItem.innerHTML = `
+        <img src="${currentItem.image}" alt="">
+        <div class="content">
+            <h2>${currentItem.title}</h2>
+            <p>${currentItem.text}</p>
+        </div>
+    `;
 }
 
-// chiamo la funzione
-populateCarousel(images);
+// Dichiaro una variabile per tenere traccia dell'indice corrente nell'array di oggetti
+let currentIndex = 0;
 
+// Popolo il carosello con il primo elemento dell'array quando la pagina viene caricata
+populateCarousel(currentIndex);
 
+// Aggiungo un gestore di eventi per il click sul pulsante precedente
+prevButton.addEventListener('click', () => {
+    // Aggiorno l'indice corrente, tornando all'ultimo elemento se siamo già al primo
+    currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+    // Popolo il carosello con l'elemento corrispondente all'indice aggiornato
+    populateCarousel(currentIndex);
+});
+
+// Aggiungo un gestore di eventi per il click sul pulsante successivo
+nextButton.addEventListener('click', () => {
+    // Aggiorno l'indice corrente, tornando al primo elemento se siamo già all'ultimo
+    currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+    // Popolo il carosello con l'elemento corrispondente all'indice aggiornato
+    populateCarousel(currentIndex);
+});
 
